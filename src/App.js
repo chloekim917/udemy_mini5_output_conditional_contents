@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+// don't change the Component name "App"
+export default function App() {
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
+  function deleteHandler() {
+    setIsDeleting(true);
+  }
+
+  function proceedHandler() {
+    setIsDeleting(false);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {isDeleting && (
+        <div id="alert">
+          <h2>Are you sure?</h2>
+          <p>These changes can't be reverted!</p>
+          <button onClick={proceedHandler}>Proceed</button>
+        </div>
+      )}
+      <button onClick={deleteHandler}>Delete</button>
     </div>
   );
 }
-
-export default App;
